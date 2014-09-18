@@ -1,4 +1,4 @@
-document.write( get_dinamic_op() );
+alert( get_dinamic_op() );
 /*******************************************
  * Crear opciones
  *******************************************/
@@ -13,7 +13,7 @@ var opciones = get_opciones();
  * 	Selecciona una opciones automatica
  *******************************************/
 function get_dinamic_op(){
-	return 5;
+	return Math.floor( Math.random() * (op.length - 0 + 1) + 0 );;
 }
 /*******************************************
  * Funcion: set_opciones( data )
@@ -55,12 +55,14 @@ function get_opciones(){
 }
 
 
-var cliente = prompt('Selecciona tu opcion');
+// var cliente = prompt('Selecciona tu opcion');
 // document.write('<h1>Opcion Invalida!</h1>'+cliente+'-'+op[0]);
 // document.write('<h1>Opcion Invalida!</h1>'+opciones[ cliente+'-'+op[0] ]);
+/*
 switch( opciones[ cliente+'-'+op[0] ] ){
 	case true: document.write('<h1>Ganaste</h1>'); break;
 	case false: document.write('<h1>Perdiste</h1>'); break;
 	case 'NaN': document.write('<h1>Empate</h1>'); break;
 	default: document.write('<h1>Opcion Invalida!</h1>'); break;
 }
+*/
