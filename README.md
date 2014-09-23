@@ -1,4 +1,4 @@
-GamePiedraPapelTijera
-=====================
+Juego ( Piedra papel o tijera )
+================================
 
-Juego Piedra papel o tijera ( practicas de javascript )
+Practicas de javascript
