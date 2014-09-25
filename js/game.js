@@ -17,7 +17,7 @@ var opciones = get_opciones();
  * 	Retorna un indice automatico
  *  en la variable OP
  *******************************************/
-function get_dinamic_op(){ return Math.floor( Math.random() * (op.length - 0 + 1) + 0 ); }
+function get_dinamic_op(){ return Math.floor(Math.random()*(op.length)); }
 /*******************************************
  * Funcion: set_opciones( data )
  * Param: data(string) = Nombre de la opcion
