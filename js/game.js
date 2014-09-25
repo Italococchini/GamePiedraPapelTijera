@@ -1,4 +1,8 @@
-alert( get_dinamic_op() );
+/*******************************************
+ * Nombre del Usuario
+ *******************************************/
+var userName = prompt('Escribe tu Nombre') || 'Usuario';
+	document.getElementById('userName').innerHTML = userName;
 /*******************************************
  * Crear opciones
  *******************************************/
@@ -10,22 +14,24 @@ var opciones = get_opciones();
 /*******************************************
  * Funcion: get_dinamic_op()
  * Descripcion: 
- * 	Selecciona una opciones automatica
+ * 	Retorna un indice automatico
+ *  en la variable OP
  *******************************************/
-function get_dinamic_op(){
-	return Math.floor( Math.random() * (op.length - 0 + 1) + 0 );;
-}
+function get_dinamic_op(){ return 0; }
 /*******************************************
  * Funcion: set_opciones( data )
  * Param: data(string) = Nombre de la opcion
  * Descripcion: Agregar nuevas opciones
  *******************************************/
-function set_opcion( data ){
-	if( !empty(op[data]) ){
-		op[op.length--] = data;
-		return true;
+function set_opcion(){
+	var data = prompt('Escribe el nombre de la nueva opcion');
+	if( opciones[data+data] == 'NaN' ){
+		alert("Esta opcion ya existe, Intenta con otra, se mas creativo!");
+		return false;
 	}
-	return false;
+	op[op.length] = data;
+	opciones = get_opciones(); //Actualizar Combinaciones
+	return true;
 }
 /*******************************************
  * Funcion: get_opcion()
@@ -34,35 +40,48 @@ function set_opcion( data ){
  * Estructura:
  * 	Primera palabra: opcion del Cliente, 
  * 	Segunda palabra: opcion de la Maquina
- * 	Separador: -
  * 	Ej:
- *	com[<op_usuario>-<op_maquina>] = True || False
+ *	com[<op_usuario><op_maquina>] = True || False
  *******************************************/
 function get_opciones(){
-	var sts = false;
 	var com = new Object();
+	document.getElementById("opciones").innerHTML = '';
 	for( var x = 0; x < op.length; x++ ){
+		var sts = false;
 		for( var i = x; i < op.length; i++ ){
+			sts = ( sts )? false : true;
 			if( op[i] !== op[x] ){
-				com[op[x]+'-'+op[i]] = ( sts )? false : true; // Opcion Verdadero (Ganador)
-				com[op[i]+'-'+op[x]] = ( !sts )? false : true; // Opcion Inversa (Perdedor)
-			}else{
-				com[op[x]+'-'+op[i]] = 'NaN'; // Opcion Empate
+				com[op[x] + op[i]] = sts; // Opcion Real
+				com[op[i] + op[x]] = ( !sts )? false : true; // Opcion Inversa
 			}
+			else{ 
+				com[op[x] + op[i]] = 'NaN'; // Opcion Empate 
+			}
+		}
+		// Agregar opcion
+		if( op[x] ){
+			document.getElementById("opciones").innerHTML += '<button onClick="iniciarJuego(\''+op[x]+'\');" class="opcion">'+op[x]+'</button>';
 		}
 	}
 	return com;
 }
-
-
-// var cliente = prompt('Selecciona tu opcion');
-// document.write('<h1>Opcion Invalida!</h1>'+cliente+'-'+op[0]);
-// document.write('<h1>Opcion Invalida!</h1>'+opciones[ cliente+'-'+op[0] ]);
-/*
-switch( opciones[ cliente+'-'+op[0] ] ){
-	case true: document.write('<h1>Ganaste</h1>'); break;
-	case false: document.write('<h1>Perdiste</h1>'); break;
-	case 'NaN': document.write('<h1>Empate</h1>'); break;
-	default: document.write('<h1>Opcion Invalida!</h1>'); break;
+/*******************************************
+ * Funcion: iniciarJuego()
+ * Descripcion: Determina el ganador del Juego
+ * Parametro: 
+ * 	<data> Opcion seleccionada por el usuario
+ * Retorna: El resultado del juego
+ *******************************************/
+function iniciarJuego(dataUsr){
+	var dataMaq = op[get_dinamic_op()];
+	var resultado = '';
+	switch( opciones[ dataUsr + dataMaq ] ){
+		case true: resultado = '<h1>Ganaste</h1>'; break;
+		case false: resultado = '<h1>Perdiste</h1>'; break;
+		case 'NaN': resultado = '<h1>Empate</h1>'; break;
+		default: resultado = '<h1>Opcion Invalida!</h1>'; break;
+	}
+	document.getElementById('usuario').innerHTML = dataUsr;
+	document.getElementById('maquina').innerHTML = dataMaq;
+	document.getElementById('respuesta').innerHTML = resultado;
 }
-*/

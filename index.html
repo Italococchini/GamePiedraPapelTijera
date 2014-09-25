@@ -2,36 +2,34 @@
 <html>
 	<head>
 		<title>Juego</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" >
-		<script src="js/game.js" type="text/javascript" ></script>
+		<link href="style.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
-
-		<section class="center">
-			<article>
-				<h2>Selecciona una Opción</h2>
-				<button id="piedra" class="opcion">Piedra</button>
-				<button id="papel" class="opcion">Papel</button>
-				<button id="tijera" class="opcion">Tijera</button>
-			</article>
-		</section>
-		<section class="resultado">
-			<span>Resultado:</span>
-			<hr>
+		<header>
+			<h1>PIEDRA, PAPEL, TIJERA, LAGARTO O SPOCK</h1>
+			<h2>( Práctica Javascript )</h2>
+		</header>
+		<section>
+			<span>Selecciona una Opción</span>
+			<article class="container" id="opciones"></article>
+			
 			<div>
-				<strong id="usuario"  class="opcion">Piedra</strong>
+				<span id="userName">Usuario</span>
+				<hr>
+				<div><strong id="usuario"  class="opcion">?</strong></div>
 			</div>
 			vs
 			<div>
-				<strong id="maquina"  class="opcion">?</strong>
+				<span>Máquina</span>
+				<hr>
+				<div><strong id="maquina"  class="opcion">?</strong></div>
 			</div>
-			<h1 id="respuesto" class="center">Ganaste</h1>
+			<h1 id="respuesta">:)</h1>
 		</section>		
-		<footer class="center">
-			<a>Agregar otras Opciones</a> - 
-			<a>Ir al Juego</a> - 
+		<footer>
+			<button onClick="set_opcion()">Agregar otra Opción</button> - 
 			<a>Ver Reglas</a> 
 		</footer>
-
+		<script src="game.js" type="text/javascript" ></script/>
 	</body>
 </html>
